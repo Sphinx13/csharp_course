@@ -10,7 +10,7 @@ using OpenQA.Selenium.Support.UI;
 namespace WebAddressbookTests
 {
     [TestFixture]
-    public class GroupCreationTests : TestsBase
+    public class GroupRemovalTests : TestsBase
     {
         private IWebDriver driver;
         private StringBuilder verificationErrors;
@@ -40,55 +40,32 @@ namespace WebAddressbookTests
         }
 
         [Test]
-        public void GroupCreationTest()
+        public void GroupRemovalTest()
         {
-            OpenHomePage();
+            GoToHomePage();
             Login(new AccountData("admin", "secret"));
-            GoToGroupPage();
-            InitNewGroupCreation();
-            GroupData group = new GroupData("111");
-            group.Header = "222";
-            group.Footer = "333";
-            FillGroupForm(group);
-            SubmitGroupCreation();
-            ReturnToGroupPage();
-            Logout();
+            GoToGroupsPage();
+            SelectGroup(1);
+            RemoveGroup();
+            ReturnToGroupsPage();
         }
 
-        private void Logout()
-        {
-            driver.FindElement(By.LinkText("Logout")).Click();
-        }
-
-        private void ReturnToGroupPage()
+        private void ReturnToGroupsPage()
         {
             driver.FindElement(By.LinkText("group page")).Click();
         }
 
-        private void SubmitGroupCreation()
+        private void RemoveGroup()
         {
-            driver.FindElement(By.Name("submit")).Click();
+            driver.FindElement(By.XPath("(//input[@name='delete'])[2]")).Click();
         }
 
-        private void FillGroupForm(GroupData group)
+        private void SelectGroup(int index)
         {
-            driver.FindElement(By.Name("group_name")).Click();
-            driver.FindElement(By.Name("group_name")).Clear();
-            driver.FindElement(By.Name("group_name")).SendKeys(group.Name);
-            driver.FindElement(By.Name("group_header")).Click();
-            driver.FindElement(By.Name("group_header")).Clear();
-            driver.FindElement(By.Name("group_header")).SendKeys(group.Header);
-            driver.FindElement(By.Name("group_footer")).Click();
-            driver.FindElement(By.Name("group_footer")).Clear();
-            driver.FindElement(By.Name("group_footer")).SendKeys(group.Footer);
+            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
         }
 
-        private void InitNewGroupCreation()
-        {
-            driver.FindElement(By.Name("new")).Click();
-        }
-
-        private void GoToGroupPage()
+        private void GoToGroupsPage()
         {
             driver.FindElement(By.LinkText("groups")).Click();
         }
@@ -101,11 +78,12 @@ namespace WebAddressbookTests
             driver.FindElement(By.Name("pass")).Clear();
             driver.FindElement(By.Name("pass")).SendKeys(account.Password);
             driver.FindElement(By.XPath("//input[@value='Login']")).Click();
+
         }
 
-        private void OpenHomePage()
+        private void GoToHomePage()
         {
-            driver.Navigate().GoToUrl(baseURL + "/addressbook/");
+            driver.Navigate().GoToUrl(baseURL + "/addressbook/group.php");
         }
 
         private bool IsElementPresent(By by)
