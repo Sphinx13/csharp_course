@@ -10,7 +10,7 @@ using OpenQA.Selenium.Support.UI;
 namespace WebAddressbookTests
 {
     [TestFixture]
-    public class GroupCreationTests : GroupTestsBase
+    public class GroupCreationTests : TestBase
     {
         [Test]
         public void GroupCreationTest()

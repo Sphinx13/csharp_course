@@ -10,7 +10,7 @@ using OpenQA.Selenium.Support.UI;
 
 namespace WebAddressbookTests
 {
-    public class GroupTestsBase
+    public class TestBase
     {
         protected IWebDriver driver;
         private StringBuilder verificationErrors;
