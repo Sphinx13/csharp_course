@@ -28,7 +28,7 @@ namespace WebAddressbookTests
             SubmitContactModification();
             return this;
         }
-        internal ContactHelper Remove()
+        public ContactHelper Remove()
         {
             SelectContact();
             SubmitContactRemove();
