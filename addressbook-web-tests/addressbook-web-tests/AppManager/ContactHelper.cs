@@ -14,11 +14,26 @@ namespace WebAddressbookTests
         public ContactHelper(ApplicationManager manager) : base(manager)
         {
         }
-        public void GoToNewContactPage()
+        public ContactHelper Create(ContactData data)
+        {
+            GoToNewContactPage();
+            FillContactForm(data);
+            SubmitContactCreation();
+            return this;
+        }
+        public ContactHelper Modify(ContactData newData)
+        {
+            GoToContactEdit();
+            FillContactForm(newData);
+            SubmitContactModification();
+            return this;
+        }
+        public ContactHelper GoToNewContactPage()
         {
             driver.FindElement(By.LinkText("add new")).Click();
+            return this;
         }
-        public void NewContactCreation(ContactData data)
+        public ContactHelper FillContactForm(ContactData data)
         {
             driver.FindElement(By.Name("firstname")).Click();
             driver.FindElement(By.Name("firstname")).Clear();
@@ -26,22 +41,22 @@ namespace WebAddressbookTests
             driver.FindElement(By.Name("lastname")).Click();
             driver.FindElement(By.Name("lastname")).Clear();
             driver.FindElement(By.Name("lastname")).SendKeys(data.Lastname);
-            driver.FindElement(By.Name("submit")).Click();
+            return this;
         }
-        public void GoToContactEdit()
+        public ContactHelper SubmitContactCreation()
+        {
+            driver.FindElement(By.Name("submit")).Click();
+            return this;
+        }
+        public ContactHelper GoToContactEdit()
         {
             driver.FindElement(By.XPath("//img[@alt='Edit']")).Click();
+            return this;
         }
-
-        public void ContactModification(ContactData newData)
+        public ContactHelper SubmitContactModification()
         {
-            driver.FindElement(By.Name("firstname")).Click();
-            driver.FindElement(By.Name("firstname")).Clear();
-            driver.FindElement(By.Name("firstname")).SendKeys(newData.Firstname);
-            driver.FindElement(By.Name("lastname")).Click();
-            driver.FindElement(By.Name("lastname")).Clear();
-            driver.FindElement(By.Name("lastname")).SendKeys(newData.Lastname);
             driver.FindElement(By.Name("update")).Click();
+            return this;
         }
     }
 }
