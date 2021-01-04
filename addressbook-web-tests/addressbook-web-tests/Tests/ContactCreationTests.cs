@@ -12,8 +12,8 @@ namespace WebAddressbookTests
         [Test]
         public void ContactCreationTest()
         {
-            app.Contacts.GoToNewContactPage();
             ContactData data = new ContactData("Иван", "Иванов");
+            app.Contacts.GoToNewContactPage();
             app.Contacts.NewContactCreation(data);
             app.Exit.Logout();
         }
