@@ -65,17 +65,17 @@ namespace WebAddressbookTests
             driver.FindElement(By.Name("update")).Click();
             return this;
         }
-        private ContactHelper SelectContact()
+        public ContactHelper SelectContact()
         {
             driver.FindElement(By.Name("selected[]")).Click();
             return this;
         }
-        private ContactHelper SubmitContactRemove()
+        public ContactHelper SubmitContactRemove()
         {
             driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
             return this;
         }
-        private ContactHelper AcceptRemoveAlert()
+        public ContactHelper AcceptRemoveAlert()
         {
             driver.SwitchTo().Alert().Accept();
             return this;
