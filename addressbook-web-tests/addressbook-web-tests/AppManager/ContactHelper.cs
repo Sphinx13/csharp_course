@@ -28,6 +28,13 @@ namespace WebAddressbookTests
             SubmitContactModification();
             return this;
         }
+        internal ContactHelper Remove()
+        {
+            SelectContact();
+            SubmitContactRemove();
+            AcceptRemoveAlert();
+            return this;
+        }
         public ContactHelper GoToNewContactPage()
         {
             driver.FindElement(By.LinkText("add new")).Click();
@@ -56,6 +63,21 @@ namespace WebAddressbookTests
         public ContactHelper SubmitContactModification()
         {
             driver.FindElement(By.Name("update")).Click();
+            return this;
+        }
+        private ContactHelper SelectContact()
+        {
+            driver.FindElement(By.Name("selected[]")).Click();
+            return this;
+        }
+        private ContactHelper SubmitContactRemove()
+        {
+            driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
+            return this;
+        }
+        private ContactHelper AcceptRemoveAlert()
+        {
+            driver.SwitchTo().Alert().Accept();
             return this;
         }
     }
