@@ -14,14 +14,14 @@ namespace WebAddressbookTests
         public ContactHelper(ApplicationManager manager) : base(manager)
         {
         }
-        public void NewContactCreation(ContactNameData fullname)
+        public void NewContactCreation(ContactData data)
         {
             driver.FindElement(By.Name("firstname")).Click();
             driver.FindElement(By.Name("firstname")).Clear();
-            driver.FindElement(By.Name("firstname")).SendKeys(fullname.Firstname);
+            driver.FindElement(By.Name("firstname")).SendKeys(data.Firstname);
             driver.FindElement(By.Name("lastname")).Click();
             driver.FindElement(By.Name("lastname")).Clear();
-            driver.FindElement(By.Name("lastname")).SendKeys(fullname.Lastname);
+            driver.FindElement(By.Name("lastname")).SendKeys(data.Lastname);
             driver.FindElement(By.Name("submit")).Click();
         }
         public void GoToNewContactPage()
