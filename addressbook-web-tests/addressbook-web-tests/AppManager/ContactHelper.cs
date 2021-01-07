@@ -16,6 +16,7 @@ namespace WebAddressbookTests
         }
         public ContactHelper Create(ContactData data)
         {
+            manager.Navigator.GoToHomePage();
             GoToNewContactPage();
             FillContactForm(data);
             SubmitContactCreation();
@@ -23,6 +24,7 @@ namespace WebAddressbookTests
         }
         public ContactHelper Modify(ContactData newData)
         {
+            manager.Navigator.GoToHomePage();
             GoToContactEdit();
             FillContactForm(newData);
             SubmitContactModification();
@@ -30,6 +32,7 @@ namespace WebAddressbookTests
         }
         public ContactHelper Remove()
         {
+            manager.Navigator.GoToHomePage();
             SelectContact();
             SubmitContactRemove();
             AcceptRemoveAlert();
