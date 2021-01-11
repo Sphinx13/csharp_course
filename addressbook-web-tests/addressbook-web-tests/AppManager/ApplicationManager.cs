@@ -17,7 +17,6 @@ namespace WebAddressbookTests
 
         protected LoginHelper loginHelper;
         protected NavigationHelper navigationHelper;
-        protected LogoutHelper logoutHelper;
         protected GroupHelper groupHelper;
         protected ContactHelper contactHelper;
         private static ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
@@ -30,7 +29,6 @@ namespace WebAddressbookTests
             loginHelper = new LoginHelper(this);
             navigationHelper = new NavigationHelper(this, baseURL);
             groupHelper = new GroupHelper(this);
-            logoutHelper = new LogoutHelper(this);
             contactHelper = new ContactHelper(this);
         }
 
@@ -86,14 +84,6 @@ namespace WebAddressbookTests
             get
             {
                 return groupHelper;
-            }
-        }
-
-        public LogoutHelper Exit
-        {
-            get
-            {
-                return logoutHelper;
             }
         }
 
