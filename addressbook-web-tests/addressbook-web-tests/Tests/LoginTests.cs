@@ -22,7 +22,7 @@ namespace WebAddressbookTests
             app.Auth.LoginFields(account);
             
             //verification
-            Assert.IsTrue(app.Auth.IsLoggedIn());
+            Assert.IsTrue(app.Auth.IsLoggedIn(account));
         }
         [Test]
         public void LoginWithInvalidCredentials()
@@ -31,11 +31,11 @@ namespace WebAddressbookTests
             app.Auth.Logout();
 
             //action
-            AccountData account = new AccountData("admin", "12345");
+            AccountData account = new AccountData("admin", "123456");
             app.Auth.LoginFields(account);
 
             //verification
-            Assert.IsFalse(app.Auth.IsLoggedIn());
+            Assert.IsFalse(app.Auth.IsLoggedIn(account));
         }
     }
 }
