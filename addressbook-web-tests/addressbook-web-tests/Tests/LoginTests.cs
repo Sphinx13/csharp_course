@@ -35,6 +35,7 @@ namespace WebAddressbookTests
             app.Auth.LoginFields(account);
 
             //verification
+            System.Threading.Thread.Sleep(500);
             Assert.IsFalse(app.Auth.IsLoggedIn(account));
         }
     }
